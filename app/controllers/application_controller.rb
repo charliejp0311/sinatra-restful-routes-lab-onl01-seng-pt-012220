@@ -13,10 +13,15 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/recipes' do
-    @recipe = Recipe.find_or_create_by(:name => params[:name], :ingredients => params[:ingredients], :cook_time => params[:cook_time] )
-    @recipe.save
+    @recipe = Recipe.new(:name => params[:name], :ingredients => params[:ingredients], :cook_time => params[:cook_time] )
+    if @recipe
+      @recipe.save
+      erb :show
+    else
+      redirect '/recipes/new'
+    end
     # binding.pry
-    erb :show
+    # erb :show
   end
 
   get '/recipes/:id' do
