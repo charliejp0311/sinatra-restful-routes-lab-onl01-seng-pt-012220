@@ -13,7 +13,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/recipes' do
-    @recipe = Recipe.new(:name => params[:name], :ingredients => params[:ingredients], :cook_time => params[:cook_time] )
+    @recipe = Recipe.find_or_create_by(:name => params[:name], :ingredients => params[:ingredients], :cook_time => params[:cook_time] )
     @recipe.save
     # binding.pry
     erb :show
