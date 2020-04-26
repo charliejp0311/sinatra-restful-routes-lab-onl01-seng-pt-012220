@@ -5,7 +5,7 @@ class ApplicationController < Sinatra::Base
   end
   # code actions here!
   get '/' do
-    render '/recipies'
+    redirect '/recipes'
   end
 
   get '/recipes/new' do
@@ -14,7 +14,7 @@ class ApplicationController < Sinatra::Base
 
   post '/recipes' do
     @recipe = Recipe.create(params)
-    @recipe.save
+    # @recipe.save
     # binding.pry
     erb :show
   end
