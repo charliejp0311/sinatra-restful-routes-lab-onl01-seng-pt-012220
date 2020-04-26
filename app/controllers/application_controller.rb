@@ -5,7 +5,7 @@ class ApplicationController < Sinatra::Base
   end
   # code actions here!
   get '/' do
-    redirect '/recipes'
+    render '/recipies'
   end
 
   get '/recipes/new' do
@@ -13,8 +13,8 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/recipes' do
-    @recipe = Recipe.create(params)
-    # @recipe.save
+    @recipe = Recipe.create(:name => params[:name], :ingredients => params[:ingredients], :cook_time => params[:cook_time] )
+    @recipe.save
     # binding.pry
     erb :show
   end
